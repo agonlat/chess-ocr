@@ -1,0 +1,312 @@
+{
+    "metadata": {
+        "Resultat": "7\" 112",
+        "Brett": "243",
+        "NAME": "Felix Funk",
+        "Event:": "GRENKE Chess Open 2024",
+        "Datum:": "30.3.24",
+        "Runde": "4"
+    },
+    "moves": [
+        {
+            "move_no": 1,
+            "white": "D4",
+            "black": "Sf6"
+        },
+        {
+            "move_no": 2,
+            "white": "c4",
+            "black": "e6"
+        },
+        {
+            "move_no": 3,
+            "white": "g3",
+            "black": "D5"
+        },
+        {
+            "move_no": 4,
+            "white": "Lg2",
+            "black": "Le7"
+        },
+        {
+            "move_no": 5,
+            "white": "Sf3",
+            "black": "O-O"
+        },
+        {
+            "move_no": 6,
+            "white": "O-O",
+            "black": "Dxc4"
+        },
+        {
+            "move_no": 7,
+            "white": "Dc2",
+            "black": "c6"
+        },
+        {
+            "move_no": 8,
+            "white": "a4",
+            "black": "b5"
+        },
+        {
+            "move_no": 9,
+            "white": "axb5",
+            "black": "Lb7"
+        },
+        {
+            "move_no": 10,
+            "white": "Se5",
+            "black": "DC8"
+        },
+        {
+            "move_no": 11,
+            "white": "bxc6",
+            "black": "Sxc6"
+        },
+        {
+            "move_no": 12,
+            "white": "Sxc6",
+            "black": "Lre5"
+        },
+        {
+            "move_no": 13,
+            "white": "Dxc4",
+            "black": "Lxg2"
+        },
+        {
+            "move_no": 14,
+            "white": "Dxc8",
+            "black": "Txc8"
+        },
+        {
+            "move_no": 15,
+            "white": "Kxg2",
+            "black": "a6"
+        },
+        {
+            "move_no": 16,
+            "white": "Sc3",
+            "black": "Lb4"
+        },
+        {
+            "move_no": 17,
+            "white": "Ld2",
+            "black": "Td8"
+        },
+        {
+            "move_no": 18,
+            "white": "e3",
+            "black": "e5"
+        },
+        {
+            "move_no": 19,
+            "white": "Dre5",
+            "black": "Txd2"
+        },
+        {
+            "move_no": 20,
+            "white": "ext6",
+            "black": "TxbL"
+        },
+        {
+            "move_no": 21,
+            "white": "Sd6",
+            "black": "gxf6"
+        },
+        {
+            "move_no": 22,
+            "white": "Sxt6",
+            "black": "hg2"
+        },
+        {
+            "move_no": 23,
+            "white": "Sd6",
+            "black": "Tc8"
+        },
+        {
+            "move_no": 24,
+            "white": "Sxb4",
+            "black": "a+34"
+        },
+        {
+            "move_no": 25,
+            "white": "Tfc1",
+            "black": "Txc1"
+        },
+        {
+            "move_no": 26,
+            "white": "Txe1",
+            "black": "b3"
+        },
+        {
+            "move_no": 27,
+            "white": "h4",
+            "black": "Tc2"
+        },
+        {
+            "move_no": 28,
+            "white": "Tb1",
+            "black": "b2"
+        },
+        {
+            "move_no": 29,
+            "white": "g4",
+            "black": "hIG"
+        },
+        {
+            "move_no": 30,
+            "white": "Kg)",
+            "black": "Ke6"
+        },
+        {
+            "move_no": 31,
+            "white": "f3",
+            "black": "h6"
+        },
+        {
+            "move_no": 32,
+            "white": "h5",
+            "black": "76"
+        },
+        {
+            "move_no": 33,
+            "white": "Kh3",
+            "black": "TeL"
+        },
+        {
+            "move_no": 34,
+            "white": "Kgo",
+            "black": "Tc2"
+        },
+        {
+            "move_no": 35,
+            "white": "",
+            "black": "Kd5"
+        },
+        {
+            "move_no": 36,
+            "white": "Kg3",
+            "black": "Ke5"
+        },
+        {
+            "move_no": 37,
+            "white": "7/2",
+            "black": "712"
+        },
+        {
+            "move_no": 38,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 39,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 40,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 41,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 42,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 43,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 44,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 45,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 46,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 47,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 48,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 49,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 50,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 51,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 52,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 53,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 54,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 55,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 56,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 57,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 58,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 59,
+            "white": "",
+            "black": ""
+        },
+        {
+            "move_no": 60,
+            "white": "",
+            "black": ""
+        }
+    ]
+}

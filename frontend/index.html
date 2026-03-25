@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Score Sheet Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-glow"></div>
+  
+  <header>
+    <h1>Chess <span class="accent">Vision</span></h1>
+    <p>Convert handwritten score sheets into digital PGN files.</p>
+  </header>
+
+  <main class="container">
+    <div class="upload-area" id="dropZone">
+      <div class="icon">📸</div>
+      <p>Move file here or</p>
+      <label for="fileInput" class="file-label">Search folder</label>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+      <div id="fileNameDisplay">No file selected</div>
+    </div>
+
+    <button id="uploadBtn">Start analysis</button>
+
+    <div id="resultContainer" class="hidden">
+      <h3>Result:</h3>
+      <div id="result"></div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 Chess-Vision AI
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
