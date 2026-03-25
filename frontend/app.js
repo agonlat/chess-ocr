@@ -30,7 +30,7 @@ uploadBtn.addEventListener("click", () => {
     const body = JSON.stringify({ image: base64 });
 
     try {
-      const response = await fetch("https://v3sik2bfnb.execute-api.us-east-1.amazonaws.com/upload", {
+      const response = await fetch("https://v3sik2bfnb.execute-api.us-east-1.amazonaws.com/prod/upload", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: body
