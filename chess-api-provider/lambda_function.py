@@ -1,39 +1,42 @@
 import json
 import boto3
-#Initialize DynamoDB resource
+
+# Initialisiere DynamoDB
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('ChessGames')
 
 def lambda_handler(event, context):
+    # Standard-Header für alle Antworten (wichtig für CORS)
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
+    
     try:
-        #Get the game_id from the API request parameters
-        #Example URL: /results?game_id=chess_board_001.jpg
-        query_params = event.get('queryStringParameters', {})
+        query_params = event.get('queryStringParameters', {}) or {}
         game_id = query_params.get('game_id')
         
         if not game_id:
             return {
                 'statusCode': 400,
+                'headers': headers,
                 'body': json.dumps({'error': 'Missing game_id parameter'})
             }
         
-        #Fetch the item from DynamoDB
         response = table.get_item(Key={'game_id': game_id})
         
         if 'Item' not in response:
+            # WICHTIG: Status 200 senden, damit das Frontend weiter-pollt
             return {
-                'statusCode': 404,
-                'body': json.dumps({'status': 'PROCESSING', 'message': 'Not ready yet'})
+                'statusCode': 200, 
+                'headers': headers,
+                'body': json.dumps({'status': 'PROCESSING', 'message': 'Not found in DB yet'})
             }
             
-        #Return the stored PGN and status
         item = response['Item']
         return {
             'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*' #Required for Frontend/CORS
-            },
+            'headers': headers,
             'body': json.dumps({
                 'game_id': item.get('game_id'),
                 'status': item.get('status'),
@@ -45,5 +48,6 @@ def lambda_handler(event, context):
     except Exception as e:
         return {
             'statusCode': 500,
+            'headers': headers, # Header hier auch mitschicken!
             'body': json.dumps({'error': str(e)})
         }

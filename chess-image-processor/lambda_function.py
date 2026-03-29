@@ -8,7 +8,7 @@ from pgn_builder import build_pgn
 s3_client = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
 # Stelle sicher, dass der Bucket-Name hier korrekt hinterlegt ist
-S3_BUCKET_NAME = "arn:aws:s3:::chess-score-sheets-ocr" 
+S3_BUCKET_NAME = "chess-score-sheets-ocr" 
 table = dynamodb.Table('ChessGames')
 
 def lambda_handler(event, context):
