@@ -1,7 +1,6 @@
 import json
 from extract import extract_chess_data_as_json
 from pgn_builder import build_pgn, save_pgn
-import jellyfish
 
 # 1. JSON holen
 json_str = extract_chess_data_as_json("data/game_002.jpg")

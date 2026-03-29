@@ -1,79 +1,65 @@
 import json
 import boto3
-import os
-import io
-#Import custom modules
+import base64
+import uuid
 from extract import extract_chess_data_as_json
 from pgn_builder import build_pgn
 
-#Initialize AWS clients outside the handler for better performance
 s3_client = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
-
+# Stelle sicher, dass der Bucket-Name hier korrekt hinterlegt ist
+S3_BUCKET_NAME = "arn:aws:s3:::chess-score-sheets-ocr" 
 table = dynamodb.Table('ChessGames')
 
 def lambda_handler(event, context):
     try:
-        #Extract bucket and key from the S3 event
-        bucket = event['Records'][0]['s3']['bucket']['name']
-        key = event['Records'][0]['s3']['object']['key']
+        # 1. Daten aus dem API-Gateway Request extrahieren
+        body = json.loads(event['body'])
+        image_base64 = body['image']
         
-        #Define local path in /tmp/ which is the only writable directory
-        file_name = os.path.basename(key)
-        download_path = f"/tmp/{file_name}"
+        # Eindeutige ID generieren (muss dem fileName im Frontend entsprechen)
+        game_id = f"game_{uuid.uuid4().hex}.jpg"
+        download_path = f"/tmp/{game_id}"
         
-        print(f"Starting processing for: {key} in bucket: {bucket}")
+        # 2. Base64 in Datei umwandeln
+        image_bytes = base64.b64decode(image_base64)
+        with open(download_path, "wb") as f:
+            f.write(image_bytes)
+            
+        # 3. Bild in S3 sichern (für spätere Analyse/Backup)
+        s3_client.upload_file(download_path, S3_BUCKET_NAME, game_id)
         
-        #Download the image from S3 to Lambda local storage
-        s3_client.download_file(bucket, key, download_path)
-        
-        #Perform OCR extraction and validation via extract.py
-        #This returns a JSON string containing the move data
+        # Status in DynamoDB auf 'PROCESSING' setzen
+        table.put_item(Item={'game_id': game_id, 'status': 'PROCESSING'})
+
+        # 4. OCR & PGN Erzeugung (Dauert ca. 5-15 Sekunden)
         json_str = extract_chess_data_as_json(download_path)
         game_data = json.loads(json_str)
+        pgn_string = build_pgn(game_data, language="DE")
         
-        #Generate PGN format using pgn_builder.py
-        pgn_obj = build_pgn(game_data, language="DE")
-        pgn_string = str(pgn_obj)
-        
-        #Save the final result into DynamoDB
-        #Using S3 key as the unique game_id
+        # 5. Finale PGN in DynamoDB speichern
         table.put_item(
             Item={
-                'game_id': key,
+                'game_id': game_id,
                 'pgn': pgn_string,
                 'status': 'COMPLETED',
-                'raw_json': json_str,
                 'timestamp': str(context.aws_request_id)
             }
         )
         
-        print(f"Successfully processed and stored in DynamoDB: {key}")
-        
         return {
             'statusCode': 200,
-            'body': json.dumps({
-                'message': 'Success',
-                'game_id': key,
-                'pgn': pgn_string
-            })
+            'headers': {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json"
+            },
+            'body': json.dumps({'file': game_id}) # Das Frontend braucht diese ID zum Pollen
         }
 
     except Exception as e:
         print(f"CRITICAL ERROR: {str(e)}")
-        #Attempt to log error status to DynamoDB so frontend knows it failed
-        try:
-            table.put_item(
-                Item={
-                    'game_id': event['Records'][0]['s3']['object']['key'],
-                    'status': 'ERROR',
-                    'error_message': str(e)
-                }
-            )
-        except:
-            pass
-            
         return {
             'statusCode': 500,
+            'headers': {"Access-Control-Allow-Origin": "*"},
             'body': json.dumps({'error': str(e)})
         }

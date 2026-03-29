@@ -1,6 +1,5 @@
 import chess
 import re
-import jellyfish
 from jellyfish import jaro_winkler_similarity
 
 class Engine:

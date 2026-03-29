@@ -1,7 +1,5 @@
 import boto3
 import json
-import chess
-from Levenshtein import distance
 from engine import Engine
 from parser import Parser
 

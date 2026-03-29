@@ -1,5 +1,4 @@
-import chess
-from Levenshtein import distance
+
 import re
 
 class Parser:

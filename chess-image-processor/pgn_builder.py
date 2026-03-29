@@ -3,7 +3,6 @@ import chess.pgn
 
 import chess
 import chess.pgn
-import io
 import re
 
 def build_pgn(game_data, language="EN"):
