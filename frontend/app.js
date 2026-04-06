@@ -77,15 +77,39 @@ function showError(msg) {
   uploadBtn.disabled = false;
   uploadBtn.textContent = "Try again";
 }
+function downloadBlob(content, filename, contentType) {
+    const blob = new Blob([content], { type: contentType });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+
+if (data.status === 'COMPLETED') {
+    const pgnText = data.pgn; 
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // 1. Button anzeigen
+    downloadBtn.style.display = 'block';
+    
+    // 2. Klick-Event hinzufügen
+    downloadBtn.onclick = function() {
+        const fileName = (data.game_id || "partie") + ".pgn"; 
+        downloadBlob(pgnText, fileName, 'text/plain');
+    };
+}-
 
 async function pollForResult(gameId) {
-  const maxAttempts = 60; // Erhöht auf 120 Sekunden (60 * 2s)
+  const maxAttempts = 60; 
   let attempts = 0;
 
   const interval = setInterval(async () => {
     attempts++;
     try {
-      // API Aufruf um den Status aus DynamoDB/S3 zu prüfen
+      
       const response = await fetch(`${API_BASE_URL}/chess-api-handler?game_id=${gameId}`);
       const data = await response.json();
 
